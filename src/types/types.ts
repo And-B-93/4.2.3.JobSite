@@ -24,6 +24,10 @@ export interface Experience {
   name: string;
 }
 
+export interface Key_skill {
+  name: Array<{ name: string }>;
+}
+
 export interface Vacancy {
   id: string;
   name: string;
@@ -32,6 +36,7 @@ export interface Vacancy {
   employer: Employer;
   work_format: WorkFormat;
   experience: Experience;
+  key_skill: Key_skill;
 }
 
 export interface VacanciesResponse {
