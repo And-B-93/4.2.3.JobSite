@@ -63,14 +63,16 @@ const mockStore = configureStore({
   },
 });
 
+const mockVacanciesMoscow = [mockVacancies[0]];
+
 const mockStoreMoscow = configureStore({
   reducer: {
     fetch: (
       state = {
-        vacancies: mockVacancies,
+        vacancies: mockVacanciesMoscow,
         loading: false,
         error: null,
-        total: mockVacancies.length,
+        total: mockVacanciesMoscow.length,
         totalPages: 0,
         search: "",
         area: "1",
@@ -93,12 +95,11 @@ describe("App component", function () {
 
     await waitFor(() => {
       expect(screen.getByText(/Список вакансий/i)).toBeInTheDocument();
-      expect(screen.getByText(/Frontend-разработчик/i)).toBeInTheDocument();
-      expect(screen.getAllByText(/Москва/i)[0]).toBeInTheDocument();
-      expect(screen.getAllByText(/Санкт-Петербург/i)[0]).toBeInTheDocument();
+      expect(screen.getByText(/вакансия 1/i)).toBeInTheDocument();
+      expect(screen.getByText(/вакансия 2/i)).toBeInTheDocument();
     });
   });
-  it("селект содержит города Москва", () => {
+  it("присутсвует только вакансия 1 из Москвы", () => {
     render(
       <Provider store={mockStoreMoscow}>
         <MantineProvider>
@@ -106,7 +107,7 @@ describe("App component", function () {
         </MantineProvider>
       </Provider>,
     );
-
-    expect(screen.getAllByText("Москва")[0]).toBeInTheDocument();
+    expect(screen.getByText(/вакансия 1/i)).toBeInTheDocument();
+    expect(screen.queryByText(/вакансия 2/i)).not.toBeInTheDocument();
   });
 });
