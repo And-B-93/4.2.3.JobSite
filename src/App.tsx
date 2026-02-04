@@ -123,7 +123,13 @@ function App() {
         </div>
 
         <Flex>
-          <Stack w={400} style={{ width: "317px" }}>
+          <Stack
+            w={400}
+            style={{
+              minWidth: "320px",
+              margin: "0 12px",
+            }}
+          >
             <Group
               style={{
                 padding: "24px",
@@ -135,7 +141,7 @@ function App() {
                 Ключевые навыки
               </Text>
 
-              <Group justify="space-between" style={{ width: "100%" }}>
+              <Group style={{}}>
                 <TextInput
                   size="sm"
                   placeholder="Навык"
@@ -143,7 +149,7 @@ function App() {
                   onChange={(e) => setNewSkill(e.target.value)}
                   onKeyDown={handleKeyPress}
                 />
-                <Button size="sm" onClick={handleAddSkill}>
+                <Button size="xs" onClick={handleAddSkill}>
                   {iconPlus}
                 </Button>
               </Group>
@@ -187,7 +193,7 @@ function App() {
                   borderRadius: "12px",
                   backgroundColor: "white",
                   minHeight: "250px !important",
-                  width: "660px ",
+                  width: "500px ",
                   padding: "24px",
                 }}
               >
